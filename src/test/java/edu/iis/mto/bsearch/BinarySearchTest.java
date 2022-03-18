@@ -52,6 +52,16 @@ class BinarySearchTest {
     }
 
     @Test
+    void searchForElementAtMiddlePositionInSeqience() {
+        int key = 3;
+        int ecpected_pos = 4;
+        SearchResult search = BinarySearch.search(key, MULTI_ELEMENT_SEQUENCE);
+        assertTrue(search.isFound());
+        assertEquals(ecpected_pos, search.getPosition());
+        assertEquals(MULTI_ELEMENT_SEQUENCE[search.getPosition() - 1], key);
+    }
+
+    @Test
     void test() {
         fail("Not yet implemented");
     }
