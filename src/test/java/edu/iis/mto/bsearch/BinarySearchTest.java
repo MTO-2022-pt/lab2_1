@@ -103,4 +103,12 @@ class BinarySearchTest {
         assertEquals(2, result.getPosition());
     }
 
+    @Test
+    void searchWithNullSequenceTest(){
+        int[] sequence = null;
+        assertThrows(NullPointerException.class, () -> {
+            BinarySearch.search(3, sequence);
+        });
+    }
+
 }
