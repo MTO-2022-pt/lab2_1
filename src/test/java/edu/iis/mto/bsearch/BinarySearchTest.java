@@ -88,7 +88,7 @@ class BinarySearchTest {
     }
 
     @Test
-    void middleLeftOneInEvenSizedElementSequenceTest(){
+    void middleLeftOneInEvenSizedSequenceTest(){
         int[] sequence = {1, 2, 3, 4};
         SearchResult result = BinarySearch.search(2, sequence);
         assertTrue(result.isFound());
@@ -96,7 +96,7 @@ class BinarySearchTest {
     }
 
     @Test
-    void middleRightOneInEvenSizedElementSequenceTest(){
+    void middleRightOneInEvenSizedSequenceTest(){
         int[] sequence = {1, 2, 3, 4};
         SearchResult result = BinarySearch.search(3, sequence);
         assertTrue(result.isFound());
@@ -109,6 +109,30 @@ class BinarySearchTest {
         assertThrows(NullPointerException.class, () -> {
             BinarySearch.search(3, sequence);
         });
+    }
+
+    @Test
+    void searchWithNegativeValuesSequenceTest(){
+        int[] sequence = {-4, -3, -2, -1};
+        SearchResult result = BinarySearch.search(-2, sequence);
+        assertTrue(result.isFound());
+        assertEquals(2, result.getPosition());
+    }
+
+    @Test
+    void searchWithNegativeAndZeroValuesSequenceTest(){
+        int[] sequence = {-4, -3, -2, -1, 0};
+        SearchResult result = BinarySearch.search(-2, sequence);
+        assertTrue(result.isFound());
+        assertEquals(2, result.getPosition());
+    }
+
+    @Test
+    void searchWithMixedValuesSequenceTest(){
+        int[] sequence = {-2, -1, 0, 1, 2};
+        SearchResult result = BinarySearch.search(0, sequence);
+        assertTrue(result.isFound());
+        assertEquals(2, result.getPosition());
     }
 
 }
