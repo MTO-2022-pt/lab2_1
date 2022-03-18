@@ -135,4 +135,20 @@ class BinarySearchTest {
         assertEquals(2, result.getPosition());
     }
 
+    @Test
+    void searchWithBigDifferencesInSequenceTest(){
+        int[] sequence = {-256778, -33, 66543, 333333, 9999999};
+        SearchResult result = BinarySearch.search(66543, sequence);
+        assertTrue(result.isFound());
+        assertEquals(2, result.getPosition());
+    }
+
+    @Test
+    void searchWithMaxAndMinValuesInSequenceTest(){
+        int[] sequence = {Integer.MIN_VALUE, -3556773, 0, 6757567, Integer.MAX_VALUE};
+        SearchResult result = BinarySearch.search(-3556773, sequence);
+        assertTrue(result.isFound());
+        assertEquals(1, result.getPosition());
+    }
+
 }
