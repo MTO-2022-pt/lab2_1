@@ -71,4 +71,10 @@ class BinarySearchTest {
         assertEquals(posInSeq,result.getPosition());
     }
 
+    @Test
+    void seqLenIsZeroShouldThrowIllegalArgumentException() {
+        int keyToFind = 2;
+        int [] seq = {};
+        assertThrowsExactly(IllegalArgumentException.class,()->BinarySearch.search(keyToFind,seq));
+    }
 }
