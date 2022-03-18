@@ -1,19 +1,110 @@
 package edu.iis.mto.bsearch;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 
 class BinarySearchTest {
-
-    @BeforeEach
-    void setUp() throws Exception {}
+    public final static int[] sequenceLong = {1, 4, 6, 8, 10, 45};
+    public final static int[] sequenceShort = { 6 };
+    public final static int[] sequenceEmpty = { };
+    public final static int[] unsorted = { 1, 4, 3, 2, 6};
+    public final static int[] repeating = { 1, 2, 3, 3, 4, 5};
 
     @Test
-    void test() {
-        fail("Not yet implemented");
+    public void inShortSequence() {
+        SearchResult result;
+        try {
+            result = BinarySearch.search(sequenceShort[0], sequenceShort);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+            assertEquals(e.getMessage(), "");
+            return;
+        }
+        assertTrue(result.isFound());
+        assertEquals(0, result.getPosition());
+    }
+
+    @Test
+    public void notInShortSequence() {
+        try {
+            assertFalse(BinarySearch.search(sequenceShort[0]+1, sequenceShort).isFound());
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+            assertEquals(e.getMessage(), "");
+        }
+    }
+
+    @Test
+    public void firstInSequence() {
+        SearchResult result;
+        try {
+            result = BinarySearch.search(sequenceLong[0], sequenceLong);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+            assertEquals(e.getMessage(), "");
+            return;
+        }
+        assertTrue(result.isFound());
+        assertEquals(0, result.getPosition());
+    }
+
+    @Test
+    public void lastInSequence() {
+        SearchResult result;
+        try {
+            result = BinarySearch.search(sequenceLong[sequenceLong.length-1], sequenceLong);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+            assertEquals(e.getMessage(), "");
+            return;
+        }
+        assertTrue(result.isFound());
+        assertEquals(sequenceLong.length-1,  result.getPosition());
+    }
+
+    @Test
+    public void midInSequence() {
+        SearchResult result;
+        try {
+            result = BinarySearch.search(sequenceLong[sequenceLong.length/2], sequenceLong);
+        } catch (IllegalAccessException e) {
+            assertEquals(e.getMessage(), "");
+            e.printStackTrace();
+            return;
+        }
+        assertTrue(result.isFound());
+        assertEquals(sequenceLong.length/2, result.getPosition());
+    }
+
+    @Test
+    public void notInLongSequence() {
+        try {
+            assertFalse(BinarySearch.search(sequenceLong[0]-1, sequenceLong).isFound());
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+            assertEquals(e.getMessage(), "");
+        }
+    }
+
+    @Test
+    public void emptySequence() {
+        Assertions.assertThrows(IllegalArgumentException.class,
+                () -> BinarySearch.search(sequenceShort[0], sequenceEmpty));
+    }
+
+    @Test
+    public void unsortedSequence() {
+        Assertions.assertThrows(IllegalArgumentException.class,
+                () -> BinarySearch.search(sequenceShort[0], unsorted));
+    }
+
+    @Test
+    public void repeating() {
+        Assertions.assertThrows(IllegalArgumentException.class,
+                () -> BinarySearch.search(sequenceShort[0], repeating));
     }
 
 }
