@@ -25,7 +25,7 @@ class BinarySearchTest {
 
     @Test
     void firstInSequence() {
-        SearchResult result = BinarySearch.search(sequenceLong[1], sequenceLong);
+        SearchResult result = BinarySearch.search(sequenceLong[0], sequenceLong);
         assertTrue(result.isFound());
         assertEquals(0, result.getPosition());
     }
