@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Random;
+
 
 class BinarySearchTest {
 
@@ -149,6 +151,47 @@ class BinarySearchTest {
         SearchResult result = BinarySearch.search(-3556773, sequence);
         assertTrue(result.isFound());
         assertEquals(1, result.getPosition());
+    }
+
+    //testy_v3
+    @Test
+    void searchWithReversedSequenceTest(){
+        int[] sequence = {4000, 300, 20, 1, -100, -2000};
+        SearchResult result = BinarySearch.search(300, sequence);
+        assertFalse(result.isFound());
+        assertEquals(-1, result.getPosition());
+    }
+
+    @Test
+    void searchWithSameElementEvenSizedSequenceTest(){
+        int[] sequence = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
+        SearchResult result = BinarySearch.search(1, sequence);
+        assertTrue(result.isFound());
+        int middle = (sequence.length - 1) / 2;
+        assertEquals(middle, result.getPosition());
+    }
+
+    @Test
+    void searchWithSameElementOddSizedSequenceTest(){
+        int[] sequence = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
+        SearchResult result = BinarySearch.search(1, sequence);
+        assertTrue(result.isFound());
+        int middle = (sequence.length - 1) / 2;
+        assertEquals(middle, result.getPosition());
+    }
+
+    @Test
+    void biSequenceBigTest(){
+        int[] sequence = new int[10000];
+        for(int i = 0; i < sequence.length; i++){
+            sequence[i] = i * 5 + i%5;
+        }
+        for(int i = 0; i < sequence.length; i++){
+            int value = i * 5 + i%5;
+            SearchResult result = BinarySearch.search(value, sequence);
+            assertTrue(result.isFound());
+            assertEquals(i, result.getPosition());
+        }
     }
 
 }
