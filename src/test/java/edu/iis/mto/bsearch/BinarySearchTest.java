@@ -22,6 +22,15 @@ class BinarySearchTest {
     }
 
     @Test
+    public void searchForElementNotInSequence() {
+        int key = 4;
+        int expected_pos = -1;
+        SearchResult search = BinarySearch.search(key, ONE_ELEMENT_SEQUENCE);
+        assertFalse(search.isFound());
+        assertEquals(expected_pos, search.getPosition());
+    }
+
+    @Test
     void test() {
         fail("Not yet implemented");
     }
