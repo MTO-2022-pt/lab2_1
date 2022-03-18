@@ -27,21 +27,21 @@ class BinarySearchTest {
     void firstInSequence() {
         SearchResult result = BinarySearch.search(sequenceLong[1], sequenceLong);
         assertTrue(result.isFound());
-        assertEquals(result.getPosition(), 0);
+        assertEquals(0, result.getPosition());
     }
 
     @Test
     void lastInSequence() {
         SearchResult result = BinarySearch.search(sequenceLong[sequenceLong.length-1], sequenceLong);
         assertTrue(result.isFound());
-        assertEquals(result.getPosition(), sequenceLong.length-1);
+        assertEquals(sequenceLong.length-1,  result.getPosition());
     }
 
     @Test
     void midInSequence() {
         SearchResult result = BinarySearch.search(sequenceLong[sequenceLong.length/2], sequenceLong);
         assertTrue(result.isFound());
-        assertEquals(result.getPosition(), sequenceLong.length/2);
+        assertEquals(sequenceLong.length/2, result.getPosition());
     }
 
     @Test
