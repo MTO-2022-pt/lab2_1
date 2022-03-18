@@ -12,6 +12,7 @@ class BinarySearchTest {
     void setUp() throws Exception {
     }
 
+    //testy_v1
     @Test
     void thereIsOneInSingleElementSequenceTest(){
         int[] sequence = {1};
@@ -59,6 +60,15 @@ class BinarySearchTest {
         SearchResult result = BinarySearch.search(4, sequence);
         assertFalse(result.isFound());
         assertEquals(-1, result.getPosition());
+    }
+
+    //testy_v2
+    @Test
+    void sequenceIsEmptyTest(){
+        int[] sequence = {};
+        assertThrows(IllegalArgumentException.class, () -> {
+            BinarySearch.search(1, sequence);
+        } );
     }
 
 }
