@@ -12,8 +12,63 @@ class BinarySearchTest {
     void setUp() throws Exception {}
 
     @Test
-    void test() {
-        fail("Not yet implemented");
+    void elementIsInSeq() {
+        int keyToFind = 1;
+        int [] seq = {1};
+        int posInSeq = 1;
+        SearchResult result = BinarySearch.search(keyToFind,seq);
+        assertTrue(result.isFound());
+        assertEquals(posInSeq,result.getPosition());
+    }
+
+    @Test
+    void elementIsNotInSeqLenOne() {
+        int keyToFind = 2;
+        int [] seq = {1};
+        int posInSeq = -1;
+        SearchResult result = BinarySearch.search(keyToFind,seq);
+        assertFalse(result.isFound());
+        assertEquals(posInSeq,result.getPosition());
+    }
+
+    @Test
+    void elementIsFirstInSeq() {
+        int keyToFind = 1;
+        int [] seq = {1,3,4,5,6,7,8};
+        int posInSeq = 1;
+        SearchResult result = BinarySearch.search(keyToFind,seq);
+        assertTrue(result.isFound());
+        assertEquals(posInSeq,result.getPosition());
+    }
+
+    @Test
+    void elementIsLastInSeq() {
+        int keyToFind = 8;
+        int [] seq = {1,3,4,5,6,7,8};
+        int posInSeq = 7;
+        SearchResult result = BinarySearch.search(keyToFind,seq);
+        assertTrue(result.isFound());
+        assertEquals(posInSeq,result.getPosition());
+    }
+
+    @Test
+    void elementIsMiddleInSeq() {
+        int keyToFind = 5;
+        int [] seq = {1,3,4,5,6,7,8};
+        int posInSeq = 4;
+        SearchResult result = BinarySearch.search(keyToFind,seq);
+        assertTrue(result.isFound());
+        assertEquals(posInSeq,result.getPosition());
+    }
+
+    @Test
+    void elementIsNotInSeqLenBigger() {
+        int keyToFind = 2;
+        int [] seq = {1,3,4,5,6,7,8};
+        int posInSeq = -1;
+        SearchResult result = BinarySearch.search(keyToFind,seq);
+        assertFalse(result.isFound());
+        assertEquals(posInSeq,result.getPosition());
     }
 
 }
