@@ -42,6 +42,16 @@ class BinarySearchTest {
     }
 
     @Test
+    void searchForElementAtLastPositionInSequence(){
+        int key = MULTI_ELEMENT_SEQUENCE[MULTI_ELEMENT_SEQUENCE.length - 1];
+        int expected_pos = MULTI_ELEMENT_SEQUENCE.length;
+        SearchResult search = BinarySearch.search(key, MULTI_ELEMENT_SEQUENCE);
+        assertTrue(search.isFound());
+        assertEquals(expected_pos, search.getPosition());
+        assertEquals(MULTI_ELEMENT_SEQUENCE[search.getPosition() - 1], key);
+    }
+
+    @Test
     void test() {
         fail("Not yet implemented");
     }
