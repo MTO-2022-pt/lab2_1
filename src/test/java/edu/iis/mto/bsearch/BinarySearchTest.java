@@ -19,11 +19,6 @@ class BinarySearchTest {
         key = 10;
     }
 
-    // @Test
-    // void test() {
-    // fail("Not yet implemented");
-    // }
-
     @Test
     void shouldFindElementInOneElementSequence() {
         seq = new int[] { key };
@@ -95,4 +90,12 @@ class BinarySearchTest {
         assertEquals(EXPECTED_GET_POSITION_VALUE_IF_NOT_FOUND, searchResult.getPosition());
     }
 
+    @Test
+    void shouldThrowIllegalArgumentExceptionWhenSequenceIsEmpty() {
+        seq = new int[] {};
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            searchResult = BinarySearch.search(key, seq);
+        });
+    }
 }
