@@ -71,4 +71,36 @@ class BinarySearchTest {
         } );
     }
 
+    @Test
+    void firstOneInTwoElementSequenceTest(){
+        int[] sequence = {1, 2};
+        SearchResult result = BinarySearch.search(1, sequence);
+        assertTrue(result.isFound());
+        assertEquals(0, result.getPosition());
+    }
+
+    @Test
+    void lastOneInTwoElementSequenceTest(){
+        int[] sequence = {1, 2};
+        SearchResult result = BinarySearch.search(2, sequence);
+        assertTrue(result.isFound());
+        assertEquals(1, result.getPosition());
+    }
+
+    @Test
+    void middleLeftOneInEvenSizedElementSequenceTest(){
+        int[] sequence = {1, 2, 3, 4};
+        SearchResult result = BinarySearch.search(2, sequence);
+        assertTrue(result.isFound());
+        assertEquals(1, result.getPosition());
+    }
+
+    @Test
+    void middleRightOneInEvenSizedElementSequenceTest(){
+        int[] sequence = {1, 2, 3, 4};
+        SearchResult result = BinarySearch.search(3, sequence);
+        assertTrue(result.isFound());
+        assertEquals(2, result.getPosition());
+    }
+
 }
