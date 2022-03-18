@@ -1,5 +1,7 @@
 package edu.iis.mto.bsearch;
 
+import arrays.Array;
+
 /**
  * Klasa implementująca wyszukiwanie binarne
  *
@@ -22,6 +24,10 @@ public class BinarySearch {
     {
         if (seq.length == 0) {
             throw new IllegalArgumentException("Tablica wejściowa musi zawierać przynajmniej jeden element!");
+        } else if (!Array.isSorted(seq)) {
+            throw new IllegalArgumentException("Tablica nie jest posortowana!");
+        } else if (Array.isRepeating(seq)) {
+            throw new IllegalArgumentException("Tablica zawiera powtarzającą się wartość!");
         }
 
         int start = 0;

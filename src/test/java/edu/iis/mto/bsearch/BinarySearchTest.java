@@ -10,6 +10,8 @@ class BinarySearchTest {
     public final static int[] sequenceLong = {1, 4, 6, 8, 10, 45};
     public final static int[] sequenceShort = { 6 };
     public final static int[] sequenceEmpty = { };
+    public final static int[] unsorted = { 1, 4, 3, 2, 6};
+    public final static int[] repeating = { 1, 2, 3, 3, 4, 5};
 
     @Test
     public void inShortSequence() {
@@ -91,6 +93,18 @@ class BinarySearchTest {
     public void emptySequence() {
         Assertions.assertThrows(IllegalArgumentException.class,
                 () -> BinarySearch.search(sequenceShort[0], sequenceEmpty));
+    }
+
+    @Test
+    public void unsortedSequence() {
+        Assertions.assertThrows(IllegalArgumentException.class,
+                () -> BinarySearch.search(sequenceShort[0], unsorted));
+    }
+
+    @Test
+    public void repeating() {
+        Assertions.assertThrows(IllegalArgumentException.class,
+                () -> BinarySearch.search(sequenceShort[0], repeating));
     }
 
 }
