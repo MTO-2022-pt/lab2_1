@@ -31,6 +31,13 @@ class BinarySearchTest {
         }
     }
 
+    @Test
+    void testEmptyArray(){
+        SEARCHED_VALUE = 7;
+        int[] empty = new int[0];
+        assertThrows(IllegalArgumentException.class, () -> BinarySearch.search(SEARCHED_VALUE, empty) );
+    }
+
     //Tests for 1 element array.
     @Test
     void testPresentInOneElementArray() {
