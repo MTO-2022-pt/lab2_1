@@ -6,27 +6,32 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Random;
-
+/*///todo assert correct pos, add short array for test 1,2 + refactor test names*/
 
 class BinarySearchTest {
 
     SearchResult result;
     int SEARCHED_VALUE;
-    final int ARR_SIZE = 7;
-    int[] testSeq = new int[ARR_SIZE];
+    final int ARR_SIZE_ODD = 7;
+    final int ARR_SIZE_EVEN = 10;
+    int[] testSeqOdd = new int[ARR_SIZE_ODD];
+    int[] testSeqEven = new int[ARR_SIZE_EVEN];
     int targetVal;
 
     @BeforeEach
     void setUp() throws Exception {
         Random rand = new Random();
         targetVal = Math.abs(rand.nextInt(30));
-        for(int i = 0; i < ARR_SIZE; i++){
-            testSeq[i] = targetVal + i;
+        for(int i = 0; i < ARR_SIZE_ODD; i++){
+            testSeqOdd[i] = targetVal + i;
+        }
+        for(int i = 0; i < ARR_SIZE_EVEN; i++){
+            testSeqEven[i] = targetVal + i;
         }
     }
 
     @Test
-    void test1() {
+    void testPresentInOneElementArray() {
         SEARCHED_VALUE = 7;
         int[] testOneElementSeq = {SEARCHED_VALUE};
         result = BinarySearch.search(SEARCHED_VALUE, testOneElementSeq);
@@ -34,7 +39,7 @@ class BinarySearchTest {
     }
 
     @Test
-    void test2(){
+    void testNotPresentInOneElementArray(){
         SEARCHED_VALUE = 9;
         int[] testOneElementSeq = {SEARCHED_VALUE+1};
         result = BinarySearch.search(SEARCHED_VALUE, testOneElementSeq);
@@ -42,31 +47,32 @@ class BinarySearchTest {
     }
 
     @Test
-    void test3(){
-        SEARCHED_VALUE = testSeq[0];
-        result = BinarySearch.search(SEARCHED_VALUE, testSeq);
+    void testFirstElementOddLenArray(){
+        SEARCHED_VALUE = testSeqOdd[0];
+        result = BinarySearch.search(SEARCHED_VALUE, testSeqOdd);
         assertTrue(result.isFound());
     }
 
     @Test
-    void test4(){
-        SEARCHED_VALUE = testSeq[ARR_SIZE-1];
-        result = BinarySearch.search(SEARCHED_VALUE, testSeq);
+    void testLastElementOddLenArray(){
+        SEARCHED_VALUE = testSeqOdd[ARR_SIZE_ODD -1];
+        result = BinarySearch.search(SEARCHED_VALUE, testSeqOdd);
         assertTrue(result.isFound());
     }
 
     @Test
-    void test5(){
-        SEARCHED_VALUE = testSeq[ARR_SIZE/2];
-        result = BinarySearch.search(SEARCHED_VALUE, testSeq);
+    void testMidElementOddLenArray(){
+        SEARCHED_VALUE = testSeqOdd[ARR_SIZE_ODD /2];
+        result = BinarySearch.search(SEARCHED_VALUE, testSeqOdd);
         assertTrue(result.isFound());
     }
 
     @Test
-    void test6(){
+    void testNotPresentOddLenArray(){
         final int SEARCHED_VALUE = targetVal-1;
-        result = BinarySearch.search(SEARCHED_VALUE, testSeq);
+        result = BinarySearch.search(SEARCHED_VALUE, testSeqOdd);
         assertFalse(result.isFound());
     }
+
 
 }
