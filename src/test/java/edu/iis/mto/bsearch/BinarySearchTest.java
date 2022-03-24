@@ -7,94 +7,78 @@ import org.junit.jupiter.api.Test;
 
 
 class BinarySearchTest {
-
-    @BeforeEach
-    void setUp() throws Exception {}
+    private static final int[] seqOneElement = {1};
+    private static final int[] seqBiggerOdd = {1, 3, 4, 5, 6, 7, 8};
+    private static final int[] seqBiggerEven = {1, 3, 4, 5, 6, 7, 8, 9};
+    private static final int[] seqEmpty = {};
 
     @Test
     void elementIsInSeq() {
-        int keyToFind = 1;
-        int [] seq = {1};
-        int posInSeq = 1;
-        SearchResult result = BinarySearch.search(keyToFind,seq);
+        int posInSeq = 0;
+        SearchResult result = BinarySearch.search(seqOneElement[posInSeq], seqOneElement);
         assertTrue(result.isFound());
-        assertEquals(posInSeq,result.getPosition());
+        assertEquals(posInSeq, result.getPosition());
     }
 
     @Test
     void elementIsNotInSeqLenOne() {
-        int keyToFind = 2;
-        int [] seq = {1};
         int posInSeq = -1;
-        SearchResult result = BinarySearch.search(keyToFind,seq);
+        SearchResult result = BinarySearch.search(posInSeq, seqOneElement);
         assertFalse(result.isFound());
-        assertEquals(posInSeq,result.getPosition());
+        assertEquals(posInSeq, result.getPosition());
     }
 
     @Test
     void elementIsFirstInSeq() {
-        int keyToFind = 1;
-        int [] seq = {1,3,4,5,6,7,8};
-        int posInSeq = 1;
-        SearchResult result = BinarySearch.search(keyToFind,seq);
+        int posInSeq = 0;
+        SearchResult result = BinarySearch.search(seqBiggerOdd[posInSeq], seqBiggerOdd);
         assertTrue(result.isFound());
-        assertEquals(posInSeq,result.getPosition());
+        assertEquals(posInSeq, result.getPosition());
     }
 
     @Test
     void elementIsLastInSeq() {
-        int keyToFind = 8;
-        int [] seq = {1,3,4,5,6,7,8};
-        int posInSeq = 7;
-        SearchResult result = BinarySearch.search(keyToFind,seq);
+        int posInSeq = seqBiggerOdd.length - 1;
+        SearchResult result = BinarySearch.search(seqBiggerOdd[posInSeq], seqBiggerOdd);
         assertTrue(result.isFound());
-        assertEquals(posInSeq,result.getPosition());
+        assertEquals(posInSeq, result.getPosition());
     }
 
     @Test
     void elementIsMiddleInOddSeq() {
-        int keyToFind = 5;
-        int [] seq = {1,3,4,5,6,7,8};
-        int posInSeq = 4;
-        SearchResult result = BinarySearch.search(keyToFind,seq);
+        int posInSeq = (seqBiggerOdd.length / 2);
+        SearchResult result = BinarySearch.search(seqBiggerOdd[posInSeq], seqBiggerOdd);
         assertTrue(result.isFound());
-        assertEquals(posInSeq,result.getPosition());
+        assertEquals(posInSeq, result.getPosition());
     }
 
     @Test
     void elementIsMiddleInEvenSeqPreMiddle() {
-        int keyToFind = 5;
-        int [] seq = {1,3,4,5,6,7,8,9};
-        int posInSeq = 4;
-        SearchResult result = BinarySearch.search(keyToFind,seq);
+        int posInSeq = (seqBiggerEven.length / 2) - 1;
+        SearchResult result = BinarySearch.search(seqBiggerEven[posInSeq], seqBiggerEven);
         assertTrue(result.isFound());
-        assertEquals(posInSeq,result.getPosition());
+        assertEquals(posInSeq, result.getPosition());
     }
 
     @Test
     void elementIsMiddleInEvenSeqPostMiddle() {
-        int keyToFind = 6;
-        int [] seq = {1,3,4,5,6,7,8,9};
-        int posInSeq = 5;
-        SearchResult result = BinarySearch.search(keyToFind,seq);
+        int posInSeq = seqBiggerEven.length / 2;
+        SearchResult result = BinarySearch.search(seqBiggerEven[posInSeq], seqBiggerEven);
         assertTrue(result.isFound());
-        assertEquals(posInSeq,result.getPosition());
+        assertEquals(posInSeq, result.getPosition());
     }
 
     @Test
     void elementIsNotInSeqLenBigger() {
-        int keyToFind = 2;
-        int [] seq = {1,3,4,5,6,7,8};
         int posInSeq = -1;
-        SearchResult result = BinarySearch.search(keyToFind,seq);
+        SearchResult result = BinarySearch.search(posInSeq, seqBiggerOdd);
         assertFalse(result.isFound());
-        assertEquals(posInSeq,result.getPosition());
+        assertEquals(posInSeq, result.getPosition());
     }
 
     @Test
     void seqLenIsZeroShouldThrowIllegalArgumentException() {
-        int keyToFind = 2;
-        int [] seq = {};
-        assertThrowsExactly(IllegalArgumentException.class,()->BinarySearch.search(keyToFind,seq));
+        int keyToFind = -1;
+        assertThrowsExactly(IllegalArgumentException.class, () -> BinarySearch.search(keyToFind, seqEmpty));
     }
 }
