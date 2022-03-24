@@ -12,6 +12,7 @@ class BinarySearchTest {
 
     SearchResult result;
     int SEARCHED_VALUE;
+    int NOT_FOUND = -1;
     final int ARR_SIZE_ODD = 7;
     final int ARR_SIZE_EVEN = 10;
     int[] testSeqOdd = new int[ARR_SIZE_ODD];
@@ -30,12 +31,14 @@ class BinarySearchTest {
         }
     }
 
+    //Tests for 1 element array.
     @Test
     void testPresentInOneElementArray() {
         SEARCHED_VALUE = 7;
         int[] testOneElementSeq = {SEARCHED_VALUE};
         result = BinarySearch.search(SEARCHED_VALUE, testOneElementSeq);
         assertTrue(result.isFound());
+        assertEquals(0, result.getPosition());
     }
 
     @Test
@@ -44,13 +47,18 @@ class BinarySearchTest {
         int[] testOneElementSeq = {SEARCHED_VALUE+1};
         result = BinarySearch.search(SEARCHED_VALUE, testOneElementSeq);
         assertFalse(result.isFound());
+        assertEquals(NOT_FOUND, result.getPosition());
+
     }
 
+
+    // Tests for odd len arrays
     @Test
     void testFirstElementOddLenArray(){
         SEARCHED_VALUE = testSeqOdd[0];
         result = BinarySearch.search(SEARCHED_VALUE, testSeqOdd);
         assertTrue(result.isFound());
+        assertEquals(0, result.getPosition());
     }
 
     @Test
@@ -58,6 +66,7 @@ class BinarySearchTest {
         SEARCHED_VALUE = testSeqOdd[ARR_SIZE_ODD -1];
         result = BinarySearch.search(SEARCHED_VALUE, testSeqOdd);
         assertTrue(result.isFound());
+        assertEquals(ARR_SIZE_ODD -1, result.getPosition());
     }
 
     @Test
@@ -65,6 +74,7 @@ class BinarySearchTest {
         SEARCHED_VALUE = testSeqOdd[ARR_SIZE_ODD /2];
         result = BinarySearch.search(SEARCHED_VALUE, testSeqOdd);
         assertTrue(result.isFound());
+        assertEquals(ARR_SIZE_ODD /2, result.getPosition());
     }
 
     @Test
@@ -72,7 +82,49 @@ class BinarySearchTest {
         final int SEARCHED_VALUE = targetVal-1;
         result = BinarySearch.search(SEARCHED_VALUE, testSeqOdd);
         assertFalse(result.isFound());
+        assertEquals(NOT_FOUND, result.getPosition());
     }
 
+    //Tests for even len array
+
+    @Test
+    void testFirstElementEvenLenArray(){
+        SEARCHED_VALUE = testSeqEven[0];
+        result = BinarySearch.search(SEARCHED_VALUE, testSeqEven);
+        assertTrue(result.isFound());
+        assertEquals(0, result.getPosition());
+    }
+
+    @Test
+    void testLastElementEvenLenArray(){
+        SEARCHED_VALUE = testSeqEven[ARR_SIZE_EVEN -1];
+        result = BinarySearch.search(SEARCHED_VALUE, testSeqEven);
+        assertTrue(result.isFound());
+        assertEquals(ARR_SIZE_EVEN -1, result.getPosition());
+    }
+
+    @Test
+    void testRightMidElementEvenLenArray(){
+        SEARCHED_VALUE = testSeqEven[(ARR_SIZE_EVEN /2)];
+        result = BinarySearch.search(SEARCHED_VALUE, testSeqEven);
+        assertTrue(result.isFound());
+        assertEquals(ARR_SIZE_EVEN /2, result.getPosition());
+    }
+
+    @Test
+    void testLeftMidElementEvenLenArray(){
+        SEARCHED_VALUE = testSeqEven[(ARR_SIZE_EVEN/2) - 1];
+        result = BinarySearch.search(SEARCHED_VALUE, testSeqEven);
+        assertTrue(result.isFound());
+        assertEquals((ARR_SIZE_EVEN/2) - 1, result.getPosition());
+    }
+
+    @Test
+    void testNotPresentEvenLenArray(){
+        final int SEARCHED_VALUE = targetVal-1;
+        result = BinarySearch.search(SEARCHED_VALUE, testSeqEven);
+        assertFalse(result.isFound());
+        assertEquals(NOT_FOUND, result.getPosition());
+    }
 
 }
