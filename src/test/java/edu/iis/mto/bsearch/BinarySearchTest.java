@@ -20,7 +20,7 @@ class BinarySearchTest {
     int targetVal;
 
     @BeforeEach
-    void setUp() throws Exception {
+    void setUp(){
         Random rand = new Random();
         targetVal = Math.abs(rand.nextInt(30));
         for(int i = 0; i < ARR_SIZE_ODD; i++){
@@ -31,6 +31,8 @@ class BinarySearchTest {
         }
     }
 
+    //Test for empty array
+
     @Test
     void testEmptyArray(){
         SEARCHED_VALUE = 7;
@@ -39,6 +41,14 @@ class BinarySearchTest {
     }
 
     //Tests for 1 element array.
+
+    @Test
+    void testNotSortedOddLenArray(){
+        SEARCHED_VALUE = 7;
+        testSeqOdd[0] = testSeqOdd[ARR_SIZE_ODD-1];
+        assertThrows(IllegalArgumentException.class, () -> BinarySearch.search(SEARCHED_VALUE, testSeqOdd));
+    }
+
     @Test
     void testPresentInOneElementArray() {
         SEARCHED_VALUE = 7;
@@ -60,6 +70,13 @@ class BinarySearchTest {
 
 
     // Tests for odd len arrays
+    @Test
+    void testDuplicatesOddArray(){
+        SEARCHED_VALUE = 7;
+        testSeqOdd[0] = testSeqOdd[1];
+        assertThrows(IllegalArgumentException.class, () -> BinarySearch.search(SEARCHED_VALUE, testSeqOdd));
+    }
+
     @Test
     void testFirstElementOddLenArray(){
         SEARCHED_VALUE = testSeqOdd[0];
@@ -93,6 +110,20 @@ class BinarySearchTest {
     }
 
     //Tests for even len array
+
+    @Test
+    void testNotSortedEvenLenArray(){
+        SEARCHED_VALUE = 7;
+        testSeqEven[0] = testSeqEven[ARR_SIZE_EVEN-1];
+        assertThrows(IllegalArgumentException.class, () -> BinarySearch.search(SEARCHED_VALUE, testSeqEven));
+    }
+
+    @Test
+    void testDuplicatesEvenLenArray(){
+        SEARCHED_VALUE = 7;
+        testSeqEven[0] = testSeqEven[1];
+        assertThrows(IllegalArgumentException.class, () -> BinarySearch.search(SEARCHED_VALUE, testSeqEven));
+    }
 
     @Test
     void testFirstElementEvenLenArray(){
