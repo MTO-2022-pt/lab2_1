@@ -52,10 +52,30 @@ class BinarySearchTest {
     }
 
     @Test
-    void elementIsMiddleInSeq() {
+    void elementIsMiddleInOddSeq() {
         int keyToFind = 5;
         int [] seq = {1,3,4,5,6,7,8};
         int posInSeq = 4;
+        SearchResult result = BinarySearch.search(keyToFind,seq);
+        assertTrue(result.isFound());
+        assertEquals(posInSeq,result.getPosition());
+    }
+
+    @Test
+    void elementIsMiddleInEvenSeqPreMiddle() {
+        int keyToFind = 5;
+        int [] seq = {1,3,4,5,6,7,8,9};
+        int posInSeq = 4;
+        SearchResult result = BinarySearch.search(keyToFind,seq);
+        assertTrue(result.isFound());
+        assertEquals(posInSeq,result.getPosition());
+    }
+
+    @Test
+    void elementIsMiddleInEvenSeqPostMiddle() {
+        int keyToFind = 6;
+        int [] seq = {1,3,4,5,6,7,8,9};
+        int posInSeq = 5;
         SearchResult result = BinarySearch.search(keyToFind,seq);
         assertTrue(result.isFound());
         assertEquals(posInSeq,result.getPosition());
