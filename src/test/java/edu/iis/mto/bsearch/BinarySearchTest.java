@@ -77,7 +77,7 @@ class BinarySearchTest {
     @Test
     public void searchForElementInEmptySequence() {
         int key = 5;
-        Assertions.assertThrows(IllegalArgumentException.class, () ->{
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
             BinarySearch.search(key, EMPTY_ELEMENT_SEQUENCE);
         });
     }
@@ -85,9 +85,16 @@ class BinarySearchTest {
     @Test
     public void searchForElementInUnsortedSequence() {
         int key = 5;
-        Assertions.assertThrows(IllegalArgumentException.class, () ->{
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
             BinarySearch.search(key, UNSORTED_MULTI_ELEMENT_SEQUENCE);
-        })
+        });
     }
 
+    @Test
+    public void searchForElementInDuplicatedSequence() {
+        int key = 2;
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            BinarySearch.search(key, SEQUENCE_WITH_DUPLICATED_ELEMENTS);
+        });
+    }
 }
