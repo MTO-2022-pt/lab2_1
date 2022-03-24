@@ -2,7 +2,8 @@ package edu.iis.mto.bsearch;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Assertions;
+//import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class BinarySearchTest {
@@ -68,5 +69,19 @@ class BinarySearchTest {
         catch (IllegalArgumentException e) {
             System.out.println("Error. Invaild length!");
         }
+    }
+
+    @Test
+    public void unsortedSequence() {
+        int[] seqL = {13, 43, 12};
+        int key = 2;
+        Assertions.assertThrows(IllegalArgumentException.class, () -> BinarySearch.search(key, seqL));
+    }
+
+    @Test
+    public void invalidRepeating() {
+        int[] seqL = {13, 43, 12, 13, 3, 4};
+        int key = 1;
+        Assertions.assertThrows(IllegalArgumentException.class, () -> BinarySearch.search(key, seqL));
     }
 }
