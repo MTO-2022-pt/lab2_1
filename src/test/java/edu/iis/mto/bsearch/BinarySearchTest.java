@@ -2,6 +2,7 @@ package edu.iis.mto.bsearch;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -9,6 +10,7 @@ import org.junit.jupiter.api.Test;
 class BinarySearchTest {
     private static final int[] ONE_ELEMENT_SEQUENCE = {2};
     private static final int[] MULTI_ELEMENT_SEQUENCE = {-3, 0, 1, 3, 6, 9, 12};
+    private static final int[] EMPTY_ELEMENT_SEQUENCE = {};
 
     @BeforeEach
     void setUp() throws Exception {}
@@ -42,7 +44,7 @@ class BinarySearchTest {
     }
 
     @Test
-    void searchForElementAtLastPositionInSequence(){
+     public void searchForElementAtLastPositionInSequence(){
         int key = MULTI_ELEMENT_SEQUENCE[MULTI_ELEMENT_SEQUENCE.length - 1];
         int expected_pos = MULTI_ELEMENT_SEQUENCE.length;
         SearchResult search = BinarySearch.search(key, MULTI_ELEMENT_SEQUENCE);
@@ -52,7 +54,7 @@ class BinarySearchTest {
     }
 
     @Test
-    void searchForElementAtMiddlePositionInSequence() {
+    public void searchForElementAtMiddlePositionInSequence() {
         int key = 3;
         int ecpected_pos = 4;
         SearchResult search = BinarySearch.search(key, MULTI_ELEMENT_SEQUENCE);
@@ -62,12 +64,20 @@ class BinarySearchTest {
     }
 
     @Test
-    void searchForElementInMultiSequence() {
+    public void searchForElementInMultiSequence() {
         int key = 5;
         int expected_pos = -1;
         SearchResult search = BinarySearch.search(key, MULTI_ELEMENT_SEQUENCE);
         assertFalse(search.isFound());
         assertEquals(expected_pos, search.getPosition());
+    }
+
+    @Test
+    public void searchForElementInEmptySequence() {
+        int key = 5;
+        Assertions.assertThrows(IllegalArgumentException.class, () ->{
+            BinarySearch.search(key, EMPTY_ELEMENT_SEQUENCE);
+        });
     }
 
 }
