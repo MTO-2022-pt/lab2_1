@@ -2,7 +2,7 @@
  *
  */
 package edu.iis.mto.bsearch;
-
+import arrays.*;
 /**
  * Klasa implementująca wyszukiwanie binarne
  *
@@ -25,6 +25,15 @@ public class BinarySearch {
         if (seq.length == 0) {
             throw new IllegalArgumentException();
         }
+
+        if (Array.isRepeating(seq)) {
+            throw new IllegalArgumentException();
+        }
+
+        if (!Array.isSorted(seq)) {
+            throw new IllegalArgumentException();
+        }
+
         int start = 0;
         int end = seq.length - 1;
         int center;
