@@ -23,7 +23,7 @@ public class BinarySearch {
      *         sekwencji, jezeli nie znaleziony -1)
      */
     public static SearchResult search(int key, int[] seq) throws IllegalArgumentException {
-        if (seq.length == 0) throw new IllegalArgumentException("At last 1 element expected!");
+        validateInput(seq);
         int start = 0;
         int end = seq.length - 1;
         int center;
@@ -45,4 +45,18 @@ public class BinarySearch {
         return result;
     }
 
+    private static void validateInput(int[] seq) {
+        if (seq.length == 0) throw new IllegalArgumentException("At last 1 element expected!");
+        if (!isSeqSortedAscendingWithoutDuplicates(seq))
+            throw new IllegalArgumentException("Seq should bo sorted asc without duplicates!");
+    }
+
+    private static boolean isSeqSortedAscendingWithoutDuplicates(int[] seq) {
+        int prevI = seq[0] - 1;
+        for (int i : seq) {
+            if (i <= prevI) return false;
+            prevI = i;
+        }
+        return true;
+    }
 }

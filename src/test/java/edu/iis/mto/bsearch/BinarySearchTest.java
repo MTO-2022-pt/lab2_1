@@ -2,7 +2,6 @@ package edu.iis.mto.bsearch;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 
@@ -86,19 +85,19 @@ class BinarySearchTest {
     }
 
     @Test
-    void seqIsNotSortedAtAllShouldThrowsxception() {
+    void seqIsNotSortedAtAllShouldThrowException() {
         int keyToFind = 4;
         assertThrowsExactly(IllegalArgumentException.class, () -> BinarySearch.search(keyToFind, seqNotSorted));
     }
 
     @Test
-    void seqIsNotSortedAscendingShouldThrowsxception() {
+    void seqIsNotSortedAscendingShouldThrowException() {
         int keyToFind = 4;
         assertThrowsExactly(IllegalArgumentException.class, () -> BinarySearch.search(keyToFind, seqSortedDescending));
     }
 
     @Test
-    void seqConstainsRepeteadKeysShouldThrowsxception() {
+    void seqContainsRepeatedKeysShouldThrowException() {
         int keyToFind = 4;
         assertThrowsExactly(IllegalArgumentException.class, () -> BinarySearch.search(keyToFind, seqWithDuplicates));
     }
