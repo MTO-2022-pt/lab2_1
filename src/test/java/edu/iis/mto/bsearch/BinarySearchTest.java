@@ -11,6 +11,8 @@ class BinarySearchTest {
     private static final int[] ONE_ELEMENT_SEQUENCE = {2};
     private static final int[] MULTI_ELEMENT_SEQUENCE = {-3, 0, 1, 3, 6, 9, 12};
     private static final int[] EMPTY_ELEMENT_SEQUENCE = {};
+    private static final int[] UNSORTED_MULTI_ELEMENT_SEQUENCE = {0, 1, -3, 3, 6, 9, 12};
+    private static final int[] SEQUENCE_WITH_DUPLICATED_ELEMENTS = {1, 2, 2, 7, 10};
 
     @BeforeEach
     void setUp() throws Exception {}
@@ -78,6 +80,14 @@ class BinarySearchTest {
         Assertions.assertThrows(IllegalArgumentException.class, () ->{
             BinarySearch.search(key, EMPTY_ELEMENT_SEQUENCE);
         });
+    }
+
+    @Test
+    public void searchForElementInUnsortedSequence() {
+        int key = 5;
+        Assertions.assertThrows(IllegalArgumentException.class, () ->{
+            BinarySearch.search(key, UNSORTED_MULTI_ELEMENT_SEQUENCE);
+        })
     }
 
 }
