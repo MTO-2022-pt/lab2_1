@@ -8,8 +8,8 @@ import org.junit.jupiter.api.Test;
 class BinarySearchTest {
     int key;
 
-    @BeforeEach
-    void setUp() throws Exception {}
+    //@BeforeEach
+    //void setUp() throws Exception {}
 
     @Test
     void isInSequence() {
@@ -57,11 +57,16 @@ class BinarySearchTest {
     }
 
     @Test
-    void notLongInSequence() {
+    public void notLongInSequence() {
         int[] seqL = {10, 11, 12};
-        key = seqL[0] - 1;
-        SearchResult result = BinarySearch.search(key, seqL);
-        assertFalse(result.isFound());
-        assertEquals(-1, result.getPosition());
+        try {
+            key = seqL[0] - 1;
+            SearchResult result = BinarySearch.search(key, seqL);
+            assertFalse(result.isFound());
+            assertEquals(-1, result.getPosition());
+        }
+        catch (IllegalArgumentException e) {
+            System.out.println("Error. Invaild length!");
+        }
     }
 }
