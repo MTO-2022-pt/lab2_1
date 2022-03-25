@@ -3,13 +3,17 @@
  */
 package edu.iis.mto.bsearch;
 
+import arrays.Array;
+import org.apache.commons.lang3.ArrayUtils;
+
 /**
  * Klasa implementująca wyszukiwanie binarne
  *
  */
 public class BinarySearch {
 
-    private BinarySearch() {}
+    private BinarySearch() {
+    }
 
     /**
      * Metoda realizujaca wyszukiwanie binarne
@@ -22,6 +26,13 @@ public class BinarySearch {
      *         sekwencji, jezeli nie znaleziony -1)
      */
     public static SearchResult search(int key, int[] seq) {
+        if (seq.length == 0) {
+            throw new IllegalArgumentException();
+        }
+
+        if (!Array.isSorted(seq) || Array.isDuplucated(seq)) {
+            throw new IllegalArgumentException();
+        }
         int start = 0;
         int end = seq.length - 1;
         int center;
