@@ -1,9 +1,7 @@
 package edu.iis.mto.bsearch;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 class BinarySearchTest {
@@ -22,7 +20,7 @@ class BinarySearchTest {
     }
 
     @Test
-    void shouldnotFindElementInOneElementSeq() {
+    void shouldNotFindElementInOneElementSeq() {
         keyPosition = -1;
         seq = new int[]{1};
         searchResult = BinarySearch.search(key, seq);
@@ -81,6 +79,13 @@ class BinarySearchTest {
         assertTrue(searchResult.isFound());
         int positionResult = searchResult.getPosition();
         assertTrue((keyPosition == positionResult) || (keyPosition1 == positionResult));
+    }
+
+    @Test()
+    void shouldThrowExceptionForEmptySeq() {
+        keyPosition = -1;
+
+        assertThrows(NullPointerException.class, () -> searchResult = BinarySearch.search(key, seq));
     }
 
 }
