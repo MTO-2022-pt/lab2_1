@@ -12,9 +12,6 @@ class BinarySearchTest {
     int key = 0, keyPosition = 1;
     int[] seq;
 
-    @BeforeEach
-    void setUp() {}
-
     @Test
     void shouldFindElementInOneElementSeq() {
         seq = new int[]{key};
