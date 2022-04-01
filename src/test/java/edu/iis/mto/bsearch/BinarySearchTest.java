@@ -74,11 +74,20 @@ class BinarySearchTest {
         seq = new int[]{-1, key, 1, 2};
         
         keyPosition = 2;
-        int keyPosition1 = keyPosition + 1;
         searchResult = BinarySearch.search(key, seq);
         assertTrue(searchResult.isFound());
         int positionResult = searchResult.getPosition();
-        assertTrue((keyPosition == positionResult) || (keyPosition1 == positionResult));
+        assertTrue(keyPosition == positionResult);
+    }
+
+    @Test
+    void isSecondMiddleElementInEvenArray() {
+        seq = new int[]{-2, -1, 0, 1};
+        keyPosition = 3;
+        searchResult = BinarySearch.search(key, seq);
+        assertTrue(searchResult.isFound());
+        int positionResult = searchResult.getPosition();
+        assertTrue(keyPosition == positionResult);
     }
 
     @Test()
