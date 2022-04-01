@@ -1,6 +1,3 @@
-/**
- *
- */
 package edu.iis.mto.bsearch;
 
 import java.util.Objects;
