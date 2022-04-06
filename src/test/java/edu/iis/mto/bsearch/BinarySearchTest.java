@@ -15,9 +15,9 @@ class BinarySearchTest {
     void test0()
     {
         int[] array = {1};
-        SearchResult ob = BinarySearch.search(1,array);
-        assertEquals(1,ob.getPosition());
-        assertTrue(ob.isFound());
+        SearchResult Ob = BinarySearch.search(1,array);
+        assertEquals(1,Ob.getPosition());
+        assertTrue(Ob.isFound());
     }
     @Test
     void test1()
