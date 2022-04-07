@@ -12,15 +12,15 @@ class BinarySearchTest {
     void setUp() throws Exception {}
 
     @Test
-    void test0()
+    void Its_in_sequence()
     {
         int[] array = {1};
-        SearchResult Ob = BinarySearch.search(1,array);
-        assertEquals(1,Ob.getPosition());
-        assertTrue(Ob.isFound());
+        SearchResult ob = BinarySearch.search(1,array);
+        assertEquals(1,ob.getPosition());
+        assertTrue(ob.isFound());
     }
     @Test
-    void test1()
+    void Not_in_sequence()
     {
         int[] array = {1};
         SearchResult ob = BinarySearch.search(2,array);
@@ -28,7 +28,7 @@ class BinarySearchTest {
         assertFalse(ob.isFound());
     }
     @Test
-    void test2()
+    void It_is_the_first_element()
     {
         int[] array = {1, 2, 3, 9, 24, 26, 30, 45, 50};
         SearchResult ob = BinarySearch.search(1,array);
@@ -36,7 +36,7 @@ class BinarySearchTest {
         assertTrue(ob.isFound());
     }
     @Test
-    void test3()
+    void It_is_the_last_element()
     {
         int[] array = {1, 2, 3, 9, 24, 26, 30, 45, 50};
         SearchResult ob = BinarySearch.search(50,array);
@@ -44,7 +44,7 @@ class BinarySearchTest {
         assertTrue(ob.isFound());
     }
     @Test
-    void test4()
+    void It_is_the_middle_element()
     {
         int[] array = {1, 2, 3, 9, 24, 26, 30, 45, 50};
         SearchResult ob = BinarySearch.search(24,array);
@@ -52,9 +52,17 @@ class BinarySearchTest {
         assertTrue(ob.isFound());
     }
     @Test
-    void test5()
+    void Not_in_sequence_more_than_one()
     {
         int[] array = {1, 2, 3, 9, 24, 26, 30, 45, 50};
+        SearchResult ob = BinarySearch.search(5,array);
+        assertEquals(-1,ob.getPosition());
+        assertFalse(ob.isFound());
+    }
+    @Test
+    void EmptyArray()
+    {
+        int[] array = {};
         SearchResult ob = BinarySearch.search(5,array);
         assertEquals(-1,ob.getPosition());
         assertFalse(ob.isFound());
