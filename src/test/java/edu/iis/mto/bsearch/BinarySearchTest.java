@@ -67,5 +67,16 @@ class BinarySearchTest {
         assertEquals(-1,ob.getPosition());
         assertFalse(ob.isFound());
     }
+    @Test
+    public void ArrayNULL()
+    {
+        int[] array = null;
+        try{
+            SearchResult a = BinarySearch.search(2,array);
+        }catch (NullPointerException e)
+        {
+            //ignore
+        }
+    }
 
 }
