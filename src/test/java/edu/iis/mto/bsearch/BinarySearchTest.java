@@ -68,4 +68,22 @@ class BinarySearchTest {
             fail("BinarySearch.search did no throw IllegalArgumentException");
         } catch (IllegalArgumentException ignored){}
     }
+
+    @Test
+    void notAscending() {
+        int[] sequence = {1, 2, 3, 2, 1};
+        try {
+            BinarySearch.search(1, sequence);
+            fail("BinarySearch.search did no throw IllegalArgumentException");
+        } catch (IllegalArgumentException ignored){}
+    }
+
+    @Test
+    void repeatingNumber() {
+        int[] sequence = {1, 2, 2, 3};
+        try {
+            BinarySearch.search(1, sequence);
+            fail("BinarySearch.search did no throw IllegalArgumentException");
+        } catch (IllegalArgumentException ignored){}
+    }
 }
