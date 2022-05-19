@@ -59,4 +59,13 @@ class BinarySearchTest {
         if(searchResult.isFound()) fail("SearchResult.isFound() was not set to false");
         if(searchResult.getPosition() != -1) fail("SearchResult.getPosition() was not set to ;1");
     }
+
+    @Test
+    void sizeZero() {
+        int[] sequence = {};
+        try {
+            BinarySearch.search(1, sequence);
+            fail("BinarySearch.search did no throw IllegalArgumentException");
+        } catch (IllegalArgumentException ignored){}
+    }
 }
